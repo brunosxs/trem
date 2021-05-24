@@ -1,0 +1,4 @@
+build/
+game
+*.o
+cmake-build-debug
