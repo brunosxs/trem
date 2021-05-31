@@ -9,16 +9,16 @@ class EntityManager
 {
 private:
     std::vector<Entity *> entities;
-
+    void clear_data();
 public:
     EntityManager();
     ~EntityManager();
-    void clear_data();
     bool is_empty();
     Entity &add_entity(std::string);
     void update(float delta);
     void render();
     std::vector<Entity *> get_entities() const;
     unsigned int count();
+    void destroy();
 };
 #endif

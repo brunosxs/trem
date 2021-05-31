@@ -7,6 +7,7 @@ include_directories(libs/glm)
 set(SOURCE
         src/core/entity.cpp
         src/core/entity_manager.cpp
+        src/core/texture_manager.cpp
         src/components/transform.cpp
         src/game.cpp
         src/main.cpp
