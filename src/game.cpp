@@ -123,5 +123,6 @@ void Game::load_level(int level_number)
 
 Game::~Game()
 {
+    manager->destroy();
     delete manager;
 }

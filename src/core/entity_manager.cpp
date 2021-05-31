@@ -56,3 +56,7 @@ unsigned int EntityManager::count()
 {
     return entities.size();
 }
+
+void EntityManager::destroy() {
+    clear_data();
+}
