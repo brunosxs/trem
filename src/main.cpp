@@ -2,9 +2,10 @@
 #include <iostream>
 #include "game.h"
 
+
 #define DOCTEST_CONFIG_IMPLEMENT
 #include <doctest/doctest.h>
-#include "test_game.h"
+    #include "test_game.h"
 
 int main(int argc, char *args[]) {
 
