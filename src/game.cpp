@@ -29,6 +29,7 @@ Game::Game()
     }
     
     json_decref(root);
+    
 }
 
 void Game::process_input()

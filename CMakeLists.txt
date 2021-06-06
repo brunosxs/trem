@@ -4,6 +4,10 @@ project(retrodl8)
 set(CMAKE_CXX_STANDARD 14)
 include_directories(libs/lua)
 include_directories(libs/glm)
+option(RETRODL8_UNITY_TESTS "Start unity tests" OFF )
+set(JANSSON_BUILD_DOCS OFF CACHE BOOL "do not build documentation for JANSSON" FORCE)
+set(RETRODL8_UNITY_TESTS ON)
+
 set(SOURCE
         src/core/entity.cpp
         src/core/entity_manager.cpp
@@ -14,12 +18,18 @@ set(SOURCE
         )
 add_executable(${PROJECT_NAME} ${SOURCE})
 add_subdirectory(thirdparty/jansson)
+add_subdirectory(thirdparty/doctest)
+#include_directories(thirdparty/doctest/doctest)
+
 target_link_libraries(${PROJECT_NAME} jansson)
 target_link_libraries(${PROJECT_NAME} lua )
 target_link_libraries(${PROJECT_NAME} SDL2)
 target_link_libraries(${PROJECT_NAME} SDL2_image)
 target_link_libraries(${PROJECT_NAME} SDL2_ttf)
 target_link_libraries(${PROJECT_NAME} SDL2_mixer)
+target_link_libraries(${PROJECT_NAME} doctest)
+
+
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                         COMMAND ${CMAKE_COMMAND} -E copy_directory
                         ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets)
