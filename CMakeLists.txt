@@ -13,6 +13,8 @@ set(SOURCE
         src/main.cpp
         )
 add_executable(${PROJECT_NAME} ${SOURCE})
+add_subdirectory(thirdparty/jansson)
+target_link_libraries(${PROJECT_NAME} jansson)
 target_link_libraries(${PROJECT_NAME} lua )
 target_link_libraries(${PROJECT_NAME} SDL2)
 target_link_libraries(${PROJECT_NAME} SDL2_image)

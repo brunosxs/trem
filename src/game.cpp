@@ -5,6 +5,7 @@
 #include "components/transform.hpp"
 #include "core/entity.hpp"
 #include "core/entity_manager.hpp"
+#include <jansson.h>
 EntityManager *manager;
 SDL_Renderer *Game::renderer;
 
@@ -13,6 +14,21 @@ Game::Game()
     run = false;
     ticks_last_frame = 0;
     manager = new EntityManager();
+    json_t *root;
+    json_error_t error;
+    root = json_load_file("assets/config.json", JSON_REJECT_DUPLICATES, &error);
+
+    if (!root) {
+        printf(error.text);
+    }
+    json_auto_t* result = json_object_get(root, "result");
+    if (!json_is_string(result)) {
+        printf("The value in the key 'result' should be a string, ignoring it");
+    } else {
+        printf(json_string_value(result));
+    }
+    
+    json_decref(root);
 }
 
 void Game::process_input()
