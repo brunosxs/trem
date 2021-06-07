@@ -1,7 +1,7 @@
 #include <iostream>
 #include "game.h"
 #include "constants.h"
-#include "../libs/glm/glm.hpp"
+#include <glm.hpp>
 #include "components/transform.hpp"
 #include "core/entity.hpp"
 #include "core/entity_manager.hpp"
