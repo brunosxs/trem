@@ -17,7 +17,6 @@ int main(int argc, char *args[]) {
     if(ctx.shouldExit())              // query flags (and --exit) rely on this
         return res;
 
-
     Game *game = new Game();
     game->initialize(WINDOW_WIDTH,WINDOW_HEIGTH);
     game->set_run(true);

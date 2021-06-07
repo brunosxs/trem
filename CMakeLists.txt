@@ -20,15 +20,17 @@ add_executable(${PROJECT_NAME} ${SOURCE})
 add_subdirectory(thirdparty/jansson)
 add_subdirectory(thirdparty/doctest)
 add_subdirectory(thirdparty/lua)
+add_subdirectory(thirdparty/glm)
 
+find_package(glm REQUIRED)
 target_link_libraries(${PROJECT_NAME} jansson)
 target_link_libraries(${PROJECT_NAME} lua )
+target_link_libraries(${PROJECT_NAME} glm )
 target_link_libraries(${PROJECT_NAME} SDL2)
 target_link_libraries(${PROJECT_NAME} SDL2_image)
 target_link_libraries(${PROJECT_NAME} SDL2_ttf)
 target_link_libraries(${PROJECT_NAME} SDL2_mixer)
 target_link_libraries(${PROJECT_NAME} doctest)
-
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                         COMMAND ${CMAKE_COMMAND} -E copy_directory
