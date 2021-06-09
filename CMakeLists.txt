@@ -15,7 +15,7 @@ set(SOURCE
         src/components/transform.cpp
         src/game.cpp
         src/main.cpp
-        )
+        src/core/asset_manager.cpp src/core/asset_manager.h)
 add_executable(${PROJECT_NAME} ${SOURCE})
 
 
