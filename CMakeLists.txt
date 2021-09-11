@@ -16,7 +16,7 @@ set(SOURCE
         src/game.cpp
         src/main.cpp
         src/core/asset_manager.cpp
-        src/components/SpriteComponent.cpp src/core/Engine.cpp src/core/Engine.h)
+        src/components/SpriteComponent.cpp src/core/Engine.cpp src/core/Engine.h src/constants.h)
 add_executable(${PROJECT_NAME} ${SOURCE})
 
 
