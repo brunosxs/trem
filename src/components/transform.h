@@ -1,6 +1,6 @@
 #ifndef __TRANSFORM_H__
 #define __TRANSFORM_H__
-#include "../core/component.hpp"
+#include "../core/component.h"
 #include <glm.hpp>
 #include <SDL2/SDL.h>
 

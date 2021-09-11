@@ -2,17 +2,20 @@
 #include "game.h"
 #include "constants.h"
 #include <glm.hpp>
-#include "components/transform.hpp"
-#include "core/entity.hpp"
-#include "core/entity_manager.hpp"
+#include "components/transform.h"
+#include "core/entity.h"
+#include "core/entity_manager.h"
 #include <jansson.h>
+#include "core/asset_manager.h"
+#include "components/SpriteComponent.h"
 EntityManager *manager;
 SDL_Renderer *Game::renderer;
+AssetManager* Game::AssetManager = new AssetManager(&manager);
 
 Game::Game()
 {
     run = false;
-    ticks_last_frame = 0;
+    thicksLastFrame = 0;
     manager = new EntityManager();
     json_t *root;
     json_error_t error;
@@ -32,7 +35,7 @@ Game::Game()
     
 }
 
-void Game::process_input()
+void Game::ProcessInput()
 {
     SDL_Event event;
     SDL_PollEvent(&event);
@@ -96,15 +99,15 @@ void Game::set_run(bool r)
 void Game::update()
 {
     // Wait until Target frame time has passed if the frame takes less to render than the FRAME_TARGET_TIME
-    unsigned int time_to_wait = FRAME_TARGET_TIME - (SDL_GetTicks() - ticks_last_frame);
+    unsigned int time_to_wait = FRAME_TARGET_TIME - (SDL_GetTicks() - thicksLastFrame);
     if (time_to_wait > 0 && time_to_wait <= FRAME_TARGET_TIME)
     {
         SDL_Delay(time_to_wait);
     }
-    float delta = ((SDL_GetTicks() - ticks_last_frame) / 1000.0f);
+    float delta = ((SDL_GetTicks() - thicksLastFrame) / 1000.0f);
     // Clamp delta time
     delta = (delta > MAX_DELTA_TIME) ? 0.05f : delta;
-    ticks_last_frame = SDL_GetTicks();
+    thicksLastFrame = SDL_GetTicks();
     // TODO: Here we call update on entity manager
     manager->update(delta);
 }
@@ -142,4 +145,5 @@ Game::~Game()
 {
     manager->destroy();
     delete manager;
+    manager = nullptr;
 }

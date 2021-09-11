@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.19)
-project(retrodl8)
+project(retrodl8 CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 include_directories(thirdparty/lua)
@@ -15,7 +15,8 @@ set(SOURCE
         src/components/transform.cpp
         src/game.cpp
         src/main.cpp
-        src/core/asset_manager.cpp src/core/asset_manager.h)
+        src/core/asset_manager.cpp
+        src/components/SpriteComponent.cpp src/core/Engine.cpp src/core/Engine.h)
 add_executable(${PROJECT_NAME} ${SOURCE})
 
 
@@ -34,6 +35,7 @@ add_subdirectory(thirdparty/glm EXCLUDE_FROM_ALL)
 include_directories(thirdparty/glm/glm)
 target_link_libraries(${PROJECT_NAME} PRIVATE glm )
 
+# copy assets folder to the target build folder
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                         COMMAND ${CMAKE_COMMAND} -E copy_directory
                         ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets)
