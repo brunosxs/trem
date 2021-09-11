@@ -7,7 +7,7 @@
 
 
 #include <map>
-#include "entity_manager.hpp"
+#include "entity_manager.h"
 #include <SDL2/SDL.h>
 
 

@@ -21,7 +21,7 @@ int main(int argc, char *args[]) {
     game->initialize(WINDOW_WIDTH,WINDOW_HEIGTH);
     game->set_run(true);
     while(game->is_running()) {
-        game->process_input();
+        game->ProcessInput();
         game->update();
         game->render();
     }

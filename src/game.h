@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#include "core/asset_manager.h"
 
 
 class Game{
@@ -11,13 +12,14 @@ class Game{
         bool test = false;
         bool run = false;
         SDL_Window *window;
-        float ticks_last_frame;
+        float thicksLastFrame;
+        
     public:
         static SDL_Renderer *renderer;
         Game();
         ~Game();
         void initialize(int width, int height);
-        void process_input();
+        void ProcessInput();
         void update();
         void render();
         void destroy();

@@ -1,6 +1,6 @@
-#include "entity_manager.hpp"
-#include "component.hpp"
-#include "entity.hpp"
+#include "entity_manager.h"
+#include "component.h"
+#include "entity.h"
 
 Entity::Entity(EntityManager &p_manager) : manager(p_manager)
 {

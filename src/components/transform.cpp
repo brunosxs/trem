@@ -1,5 +1,5 @@
 #include "../game.h"
-#include "transform.hpp"
+#include "transform.h"
 
 void TransformComponent::update(float delta)
 {
