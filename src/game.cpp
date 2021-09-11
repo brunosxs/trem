@@ -2,21 +2,13 @@
 #include "game.h"
 #include "constants.h"
 #include <glm.hpp>
-#include "components/transform.h"
-#include "core/entity.h"
-#include "core/entity_manager.h"
 #include <jansson.h>
-#include "core/asset_manager.h"
-#include "components/SpriteComponent.h"
-EntityManager *manager;
-SDL_Renderer *Game::renderer;
-AssetManager* Game::AssetManager = new AssetManager(&manager);
+
 
 Game::Game()
 {
     run = false;
     thicksLastFrame = 0;
-    manager = new EntityManager();
     json_t *root;
     json_error_t error;
     root = json_load_file("assets/config.json", JSON_REJECT_DUPLICATES, &error);
@@ -109,16 +101,12 @@ void Game::update()
     delta = (delta > MAX_DELTA_TIME) ? 0.05f : delta;
     thicksLastFrame = SDL_GetTicks();
     // TODO: Here we call update on entity manager
-    manager->update(delta);
 }
 
 void Game::render()
 {
     // TODO: CALL render() of entityManager
-    if (manager->is_empty())
-    {
-        return;
-    }
+
     SDL_RenderPresent(renderer);
 }
 
@@ -137,13 +125,10 @@ void Game::destroy()
 
 void Game::load_level(int level_number)
 {
-    Entity &new_entity(manager->add_entity("projectile"));
-    new_entity.add_component<TransformComponent>(glm::vec2(0.0, 0.0), glm::vec2(8.0, 8.0), 1.0);
+
 }
 
 Game::~Game()
 {
-    manager->destroy();
-    delete manager;
-    manager = nullptr;
+
 }
