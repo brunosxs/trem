@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.19)
-project(retrodl8 CXX)
+project(trem CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 include_directories(thirdparty/lua)
@@ -8,16 +8,10 @@ option(RETRODL8_UNITY_TESTS "Start unity tests" OFF )
 set(JANSSON_BUILD_DOCS OFF CACHE BOOL "do not build documentation for JANSSON" FORCE)
 set(RETRODL8_UNITY_TESTS ON)
 
-set(SOURCE
-        src/core/entity.cpp
-        src/core/entity_manager.cpp
-        src/core/texture_manager.cpp
-        src/components/transform.cpp
-        src/game.cpp
+set(TREM
         src/main.cpp
-        src/core/asset_manager.cpp
-        src/components/SpriteComponent.cpp src/core/Engine.cpp src/core/Engine.h src/constants.h)
-add_executable(${PROJECT_NAME} ${SOURCE})
+        )
+add_executable(${PROJECT_NAME} ${SOURCE} src/main.cpp)
 
 
 add_subdirectory(thirdparty/jansson EXCLUDE_FROM_ALL)
