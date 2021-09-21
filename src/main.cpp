@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <SDL2/SDL.h>
+#include "core/color.h"
 
 const int SCREEN_WIDTH = 224;
 const int SCREEN_HEIGHT = 288;
@@ -28,6 +29,18 @@ int main(int argc, const char *argv[]) {
     if (mainSurface == nullptr) {
         std::cout << "Could not get the surface" <<std::endl;
     }
+
+    SDL_PixelFormat* pixelFormat = mainSurface->format;
+    Color::InitColorFormat(pixelFormat);
+
+    for (int i = 0; i< SCREEN_WIDTH; i++) {
+        std::cout << "Drawing line" << i << std::endl;
+        for (int j = 0; j < SCREEN_HEIGHT; j ++) {
+            SetPixel(mainSurface,  Color::Orange().GetPixelColor(), i, j);
+        }
+    }
+    SDL_UpdateWindowSurface(window);
+
     SDL_Event sdlEvent;
     bool running = true;
 
@@ -47,12 +60,14 @@ int main(int argc, const char *argv[]) {
     return 0;
 }
 
+size_t GetIndex(SDL_Surface* surface, int row, int column) {
+    return row * surface->w + column;
+}
+
 void SetPixel(SDL_Surface* surface, uint32_t color, int x, int y) {
     SDL_LockSurface(surface);
     uint32_t* pixels = (uint32_t*)surface->pixels;
+    size_t index = GetIndex(surface, y, x);
+    pixels[index] = color;
     SDL_UnlockSurface(surface);
-}
-
-size_t GetIndex(SDL_Surface* surface, int row, int column) {
-    return row * surface->w + column;
 }
