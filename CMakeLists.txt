@@ -11,7 +11,7 @@ set(RETRODL8_UNITY_TESTS ON)
 set(TREM
         src/main.cpp
         )
-add_executable(${PROJECT_NAME} ${SOURCE} src/main.cpp src/core/color.cpp src/core/color.h)
+add_executable(${PROJECT_NAME} ${SOURCE} src/main.cpp src/core/color.cpp src/core/color.h src/core/screenBuffer.cpp src/core/screenBuffer.h)
 
 
 add_subdirectory(thirdparty/jansson EXCLUDE_FROM_ALL)

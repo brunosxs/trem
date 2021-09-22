@@ -20,6 +20,7 @@ Color::Color(uint8_t r, uint8_t g, uint8_t b) {
 };
 
 void Color::SetRGBA(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
+    // helper method that makes sdl take care of the RGBA encoding between different systems
     color = SDL_MapRGBA(pixelFormat, r, g, b, a);
 }
 
@@ -69,4 +70,24 @@ uint8_t Color::GetAlpha() {
     uint8_t r, g, b, a;
     SDL_GetRGBA(color, pixelFormat, &r, &g, &b, &a);
     return a;
-};
+}
+
+Color Color::Black() { return Color(0, 0, 0); }
+
+Color Color::White() { return Color(255, 255, 255); }
+
+Color Color::Red() { return Color(255, 0, 0); }
+
+Color Color::Green() { return Color(0, 255, 0); }
+
+Color Color::Blue() { return Color(0, 0, 255); }
+
+Color Color::Yellow() { return Color(255, 255, 0); }
+
+Color Color::Magenta() { return Color(255, 0, 255); }
+
+Color Color::Cyan() { return Color(37, 240, 217); }
+
+Color Color::Pink() { return Color(252, 197, 224); }
+
+Color Color::Orange() { return Color(245, 190, 100); };

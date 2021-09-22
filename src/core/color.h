@@ -16,25 +16,25 @@ public:
 
     static void InitColorFormat(const SDL_PixelFormat *pPixelFormat);
 
-    static Color Black() { return Color(0, 0, 0); };
+    static Color Black();;
 
-    static Color White() { return Color(255, 255, 255); };
+    static Color White();;
 
-    static Color Red() { return Color(255, 0, 0); };
+    static Color Red();;
 
-    static Color Green() { return Color(0, 255, 0); };
+    static Color Green();;
 
-    static Color Blue() { return Color(0, 0, 255); };
+    static Color Blue();;
 
-    static Color Yellow() { return Color(255, 255, 0); };
+    static Color Yellow();;
 
-    static Color Magenta() { return Color(255, 0, 255); };
+    static Color Magenta();;
 
-    static Color Cyan() { return Color(37, 240, 217); };
+    static Color Cyan();;
 
-    static Color Pink() { return Color(252, 197, 224); };
+    static Color Pink();;
 
-    static Color Orange() { return Color(245, 190, 100); };
+    static Color Orange();;
 
     Color() : color(0) {};
 

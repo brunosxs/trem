@@ -5,13 +5,10 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include "core/color.h"
-
+#include "core/screenBuffer.h"
 const int SCREEN_WIDTH = 224;
 const int SCREEN_HEIGHT = 288;
 
-void SetPixel(SDL_Surface* surface, uint32_t color, int x, int y);
-
-size_t GetIndex(SDL_Surface* surface, int r, int g, int b);
 
 int main(int argc, const char *argv[]) {
     if (SDL_Init(SDL_INIT_VIDEO)) {
@@ -32,13 +29,11 @@ int main(int argc, const char *argv[]) {
 
     SDL_PixelFormat* pixelFormat = mainSurface->format;
     Color::InitColorFormat(pixelFormat);
+    ScreenBuffer screenBuffer;
+    screenBuffer.Init(pixelFormat->format, mainSurface->w, mainSurface->h);
 
-    for (int i = 0; i< SCREEN_WIDTH; i++) {
-        std::cout << "Drawing line" << i << std::endl;
-        for (int j = 0; j < SCREEN_HEIGHT; j ++) {
-            SetPixel(mainSurface,  Color::Orange().GetPixelColor(), i, j);
-        }
-    }
+    screenBuffer. SetPixel(Color::Green(), SCREEN_WIDTH /2, SCREEN_HEIGHT / 2);
+    SDL_BlitSurface(screenBuffer.GetSurface(), nullptr, mainSurface, nullptr);
     SDL_UpdateWindowSurface(window);
 
     SDL_Event sdlEvent;
@@ -64,10 +59,3 @@ size_t GetIndex(SDL_Surface* surface, int row, int column) {
     return row * surface->w + column;
 }
 
-void SetPixel(SDL_Surface* surface, uint32_t color, int x, int y) {
-    SDL_LockSurface(surface);
-    uint32_t* pixels = (uint32_t*)surface->pixels;
-    size_t index = GetIndex(surface, y, x);
-    pixels[index] = color;
-    SDL_UnlockSurface(surface);
-}
