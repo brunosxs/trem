@@ -6,7 +6,7 @@
 #define TREM_SCREENBUFFER_H
 
 #include "color.h"
-#include <cstdint>
+#include <cstddef>
 
 class Color;
 struct SDL_Surface;
@@ -20,7 +20,7 @@ public:
     ScreenBuffer& operator=(const ScreenBuffer& screenBuffer);
     void Init(uint32_t format, uint32_t width, uint32_t height);
     void Clear(const Color& c = Color::Black());
-    void SetPixel(const Color& color, int x, int y);
+    void SetPixel(int x, int y, const Color &color);
     void GetPixel();
     inline SDL_Surface* GetSurface() { return surface;};
 private:

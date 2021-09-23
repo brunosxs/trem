@@ -6,7 +6,7 @@
 #include "SDL2/SDL.h"
 #include "screenBuffer.h"
 
-void ScreenBuffer::SetPixel(const Color &color, int x, int y) {
+void ScreenBuffer::SetPixel(int x, int y, const Color &color) {
     assert(surface);
     if (surface && (y < surface->h && y >= 0 && x >= 0 && x < surface->w)) {
         SDL_LockSurface(surface);
