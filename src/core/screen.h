@@ -12,20 +12,20 @@
 struct SDL_Window;
 struct SDL_Surface;
 
-class Vector2d;
+class Vector2;
 
 class Screen {
 public:
     Screen();
     ~Screen();
-    SDL_Window* Init(uint32_t w, uint32_t h, uint32_t mag);
+    SDL_Window* Init(uint32_t w, uint32_t h, uint32_t scale);
     void SwapBuffer();
     inline void SetClearColor(const Color& color) {clearColor = color;}
     inline uint32_t GetWidth() {return width;}
     inline uint32_t GetHeight() {return height;}
 
     void Draw(int x, int y, const Color& color);
-    void Draw(Vector2d& point, const Color& color);
+    void Draw(Vector2& point, const Color& color);
     void ClearScreen();
 
 private:

@@ -8,7 +8,7 @@
 #include <iostream>
 #include <cassert>
 
-Screen::Screen(): width(0), height(0), surface(nullptr), window(nullptr) {
+Screen::Screen() : width(0), height(0), surface(nullptr), window(nullptr) {
 
 }
 
@@ -21,17 +21,16 @@ Screen::~Screen() {
 
 }
 
-SDL_Window *Screen::Init(uint32_t w, uint32_t h, uint32_t mag) {
+SDL_Window *Screen::Init(uint32_t w, uint32_t h, uint32_t scale) {
     if (SDL_Init(SDL_INIT_VIDEO)) {
         std::cout << SDL_GetError() << std::endl;
         return nullptr;
     }
-    window = SDL_CreateWindow("Arcade", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w,
-                                           h, 0);
+    window = SDL_CreateWindow("Arcade", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w * scale , h * scale, 0);
     assert(window);
     if (window) {
         surface = SDL_GetWindowSurface(window);
-        SDL_PixelFormat* pixelFormat = surface->format;
+        SDL_PixelFormat *pixelFormat = surface->format;
         Color::InitColorFormat(pixelFormat);
         clearColor = Color::Black();
         backBuffer.Init(pixelFormat->format, width, height);
@@ -40,7 +39,7 @@ SDL_Window *Screen::Init(uint32_t w, uint32_t h, uint32_t mag) {
     }
 
     if (surface == nullptr) {
-        std::cout << "Could not get the surface" <<std::endl;
+        std::cout << "Could not get the surface" << std::endl;
     }
 
 
@@ -52,7 +51,7 @@ void Screen::Draw(int x, int y, const Color &color) {
     }
 }
 
-void Screen::Draw(Vector2d &point, const Color &color) {
+void Screen::Draw(Vector2 &point, const Color &color) {
     Draw(point.GetX(), point.GetY(), color);
 }
 
@@ -60,11 +59,10 @@ void Screen::SwapBuffer() {
     assert(window);
     if (window) {
         ClearScreen();
-        SDL_BlitSurface(backBuffer.GetSurface(), nullptr, surface, nullptr);
+        SDL_BlitScaled(backBuffer.GetSurface(), nullptr, surface, nullptr);
         SDL_UpdateWindowSurface(window);
         backBuffer.Clear(clearColor);
     }
-
 }
 
 void Screen::ClearScreen() {

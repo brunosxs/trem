@@ -13,7 +13,7 @@ const int SCREEN_HEIGHT = 288;
 int main(int argc, const char *argv[]) {
 
     Screen screen;
-    screen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, 1);
+    screen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
     screen.Draw(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, Color::Yellow());
     screen.Draw(SCREEN_WIDTH / 2 + 1, SCREEN_HEIGHT / 2, Color::Yellow());
     screen.Draw(SCREEN_WIDTH / 2 + 2, SCREEN_HEIGHT / 2, Color::Yellow());

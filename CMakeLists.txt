@@ -18,6 +18,9 @@ set(TREM_SOURCE
         src/utils/utils.h
         src/utils/vector2d.cpp
         src/utils/vector2d.h
+        src/core/shapes/line2d.h
+        src/core/shapes/line2d.cpp
+
         )
 add_executable( ${PROJECT_NAME} ${TREM_SOURCE} )
 target_include_directories(${PROJECT_NAME} BEFORE PUBLIC "src")
